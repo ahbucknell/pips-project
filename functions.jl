@@ -1,3 +1,4 @@
+# Various (somewhat) reusable functions.
 using DataFrames, CSV, StringEncodings, CairoMakie, StatsBase
 function constructDF(path)
     files = readdir(path, join = true)
