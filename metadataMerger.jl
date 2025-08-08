@@ -1,7 +1,6 @@
 # Merges various metadata files togethe into some sample database.
 using CSV, DataFrames
 include("functions.jl")
-
 function main()
     binPath = joinpath(@__DIR__, "private", "data", "outputDB.csv")
     binDB = CSV.read(binPath, DataFrame)
