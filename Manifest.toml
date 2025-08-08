@@ -2,7 +2,7 @@
 
 julia_version = "1.11.6"
 manifest_format = "2.0"
-project_hash = "79de6af0b6047d5648fe1a264bdc640c54f39b87"
+project_hash = "e544d3d088b8065901b26e97a03c46bcf552e1e5"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -262,6 +262,17 @@ deps = ["AdaptivePredicates", "EnumX", "ExactPredicates", "Random"]
 git-tree-sha1 = "5620ff4ee0084a6ab7097a27ba0c19290200b037"
 uuid = "927a84f5-c5f4-47a5-9785-b46e178433df"
 version = "1.6.4"
+
+[[deps.Distances]]
+deps = ["LinearAlgebra", "Statistics", "StatsAPI"]
+git-tree-sha1 = "c7e3a542b999843086e2f29dac96a618c105be1d"
+uuid = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
+version = "0.10.12"
+weakdeps = ["ChainRulesCore", "SparseArrays"]
+
+    [deps.Distances.extensions]
+    DistancesChainRulesCoreExt = "ChainRulesCore"
+    DistancesSparseArraysExt = "SparseArrays"
 
 [[deps.Distributed]]
 deps = ["Random", "Serialization", "Sockets"]
@@ -1292,6 +1303,12 @@ weakdeps = ["ChainRulesCore", "InverseFunctions"]
     StatsFunsChainRulesCoreExt = "ChainRulesCore"
     StatsFunsInverseFunctionsExt = "InverseFunctions"
 
+[[deps.StringDistances]]
+deps = ["Distances", "StatsAPI"]
+git-tree-sha1 = "5b2ca70b099f91e54d98064d5caf5cc9b541ad06"
+uuid = "88034a9c-02f8-509d-84a9-84ec65e18404"
+version = "0.11.3"
+
 [[deps.StringManipulation]]
 deps = ["PrecompileTools"]
 git-tree-sha1 = "725421ae8e530ec29bcbdddbe91ff8053421d023"
@@ -1353,6 +1370,12 @@ version = "1.12.1"
 deps = ["ArgTools", "SHA"]
 uuid = "a4e569a6-e804-4fa4-b0f3-eef7a1d5b13e"
 version = "1.10.0"
+
+[[deps.Taxonomy]]
+deps = ["AbstractTrees", "DataAPI", "InteractiveUtils", "OrderedCollections", "StringDistances"]
+git-tree-sha1 = "ae38a085ab9009e2f58e17ef0947a28aa4a132e1"
+uuid = "10bb16a4-4bfc-432e-9419-4ca69c1a753c"
+version = "0.4.6"
 
 [[deps.TensorCore]]
 deps = ["LinearAlgebra"]
