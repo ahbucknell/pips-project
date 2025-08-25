@@ -1,12 +1,5 @@
 using CSV, DataFrames, CairoMakie, StatsBase, Taxonomy
-
-function findNonEukPhyla(df, dom)
-    tmpDf = filter(:dom => ==(dom), df)
-    taxa = split.(tmpDf.tax, "_")
-    phyla = countmap(getindex.(taxa, 2))
-    outDf = DataFrame(phyla = collect(keys(phyla)), freq = collect(values(phyla)))
-    sort!(outDf, :phyla)
-end
+include("functions.jl")
 
 function findEukaryoticPhyla(df)
     eukDB = filter(:dom => ==("Eukarya"), df)
@@ -27,7 +20,7 @@ function findEukaryoticPhyla(df)
         catch
             if "Sar" in name.(lineage)
                 sarIdx = findfirst(==("Sar"), name.(lineage))
-                phyla[j] = name(lineage[sarIdx + 1])
+                phyla[j] = name(lineage[sarIdx + 2])
             else
                 length(lineage) < 4 ? phyla[j] = "Missing" : phyla[j] = name(lineage[4])
             end
@@ -50,6 +43,7 @@ function main(path)
     # Generate DF of eukaryotic phyla, move Missing to end of DF.
     eukPhylaDict = countmap(findEukaryoticPhyla(binDB))
     eukPhylaDf = DataFrame(phyla = collect(keys(eukPhylaDict)), freq = collect(values(eukPhylaDict)))
+    println(eukPhylaDf)
     sort!(eukPhylaDf, :phyla)
     ePhylaDf = filter(:phyla => !=("Missing"), eukPhylaDf)
     missingOnly = filter(:phyla => ==("Missing"), eukPhylaDf)

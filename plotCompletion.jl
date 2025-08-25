@@ -29,6 +29,7 @@ function main(path)
         tmpDomainDf = filter(:dom => ==(d), plottingData)
         idx = findfirst(==(d), domainOrder)
         d == "Eukarya" ? ax = ax2 : ax = ax1
+        println(d, ": ", cor(tmpDomainDf.comp, tmpDomainDf.red))
         scatter!(ax, tmpDomainDf.comp, tmpDomainDf.red, alpha = 0.5, color = colours[idx])
     end
     linkxaxes!(ax1, ax2)
@@ -47,6 +48,7 @@ function main(path)
     domainFreqDf = combine(groupby(plottingData, :dom), :dom => countmap)
     domainFreqArr = [collect(values(x))[1] for x in domainFreqDf.dom_countmap]
     domainFreqDf.freqs = domainFreqArr
+    println(domainFreqDf)
     ax5 = Axis(figure[2, 2], xticks = (1:4, domainOrder), ylabel = "Frequency")
     for x in eachrow(domainFreqDf)
         xPos = findfirst(==(x.dom), domainOrder)

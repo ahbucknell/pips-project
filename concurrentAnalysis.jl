@@ -33,4 +33,6 @@ end
 binsPerSample = generateSampleArray(samples, binDB)
 mx = generateMx(bins, binsPerSample)
 outPath = joinpath(@__DIR__, "private","data","concurrencyMatrix.csv")
+listPath = joinpath(@__DIR__, "private", "data", "concurrencyVector.csv")
 CSV.write(outPath, Tables.table(mx))
+CSV.write(listPath, Tables.table(bins))

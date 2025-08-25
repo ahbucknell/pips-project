@@ -101,3 +101,11 @@ function transformDF(df)
     end
     return DataFrame(bin = binArr, sample = samplesArr, RA = RAsArr)
 end
+
+function findNonEukPhyla(df, dom)
+    tmpDf = filter(:dom => ==(dom), df)
+    taxa = split.(tmpDf.tax, "_")
+    phyla = countmap(getindex.(taxa, 2))
+    outDf = DataFrame(phyla = collect(keys(phyla)), freq = collect(values(phyla)))
+    sort!(outDf, :phyla)
+end
